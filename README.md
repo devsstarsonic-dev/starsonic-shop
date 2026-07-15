@@ -1,57 +1,90 @@
+<div align="center">
+
+<img src="public/star.svg" alt="StarSonic Shop" width="72" />
+
 # StarSonic Shop
 
-Marketplace de músicas originais brasileiras. Protótipo da **área do cliente**:
-login, biblioteca de músicas, encomendas personalizadas com fluxo de aprovação
-e revisões, favoritos e perfil de artista.
+**Marketplace de músicas originais brasileiras.**
+
+Área do cliente: login, biblioteca de músicas, encomendas personalizadas com
+fluxo de aprovação e revisões, favoritos e perfil de artista.
 
 Interface single-page, dark, com a identidade neon (ciano → roxo) da marca.
-Sem back-end e sem build — abre direto no navegador.
+
+</div>
+
+---
+
+App React (Vite + React Router). Os dados ainda são mock, mas toda a leitura
+passa pela camada `src/api/` — o único ponto a trocar quando o backend chegar.
 
 ## Rodar
 
 ```bash
-# opção 1: abrir o arquivo
-start index.html        # Windows
-
-# opção 2: servidor local (recomendado)
-python -m http.server 8000
-# depois abra http://localhost:8000
+npm install
+npm run dev       # http://localhost:5173
 ```
 
-Fluxo sugerido: comece na tela de **Login** → botão **Entrar** leva pra área logada.
+```bash
+npm run build     # gera dist/
+npm run preview   # serve o build de produção
+```
+
+> [!TIP]
+> Comece pela tela de **Login** e clique em **Entrar** para acessar a área
+> logada. A autenticação ainda é fake (`src/auth/AuthContext.jsx`).
+
+## Telas
+
+| Rota | O que faz |
+|------|-----------|
+| `/`, `/signup` | Login e cadastro (com social login Google/Apple) |
+| `/app/musicas` | Biblioteca comprada, com download |
+| `/app/encomendas` | Timeline de acompanhamento, player de prévia, aprovação e até 3 revisões |
+| `/app/favoritos` | Músicas e artistas salvos |
+| `/app/dados` | Perfil, segurança e notificações |
+| `/encomendar` | Escolha do produto: música pronta, personalizada ou jingle |
+| `/artista/:slug` | Catálogo dinâmico do artista |
 
 ## Estrutura
 
 ```
 starsonic-shop/
-├── index.html            # todas as telas (views) e a estrutura da página
-├── assets/
-│   ├── css/styles.css     # design tokens + componentes (tema neon dark)
-│   ├── js/data.js         # catálogo de artistas (dados mock)
-│   ├── js/app.js          # navegação entre views, abas e perfil do artista
-│   └── img/
-│       ├── logo.png        # ⚠️ coloque aqui a logo enviada (ver abaixo)
-│       └── star.svg        # marca / favicon (gerado)
-└── README.md
+├── index.html            # entrypoint do Vite (Tailwind CDN + fontes)
+├── public/star.svg       # marca / favicon
+├── src/
+│   ├── main.jsx          # bootstrap: router + auth provider
+│   ├── App.jsx           # rotas
+│   ├── index.css         # design tokens + componentes (tema neon dark)
+│   ├── api/              # ← camada de dados (troque aqui pro backend)
+│   │   ├── client.js     # wrapper fetch (VITE_API_URL)
+│   │   └── index.js      # getMe, getPurchases, getArtist, ...
+│   ├── auth/             # AuthContext (fake) + ProtectedRoute
+│   ├── data/mock.js      # dados mock (compras, favoritos, artistas)
+│   ├── hooks/useApi.js   # hook de fetch assíncrono
+│   ├── components/       # Header, Layout, Logo, icons
+│   └── pages/            # uma tela por arquivo
+└── package.json
 ```
+
+## Ligar o backend
+
+1. Defina `VITE_API_URL` (ex: `.env` com `VITE_API_URL=https://api.starsonic.shop`).
+2. Em `src/api/index.js`, troque cada `return mock` por `return get('/rota')`.
+3. Em `src/auth/AuthContext.jsx`, troque o `login()` fake por um `POST /auth/login`.
+
+Nada fora de `src/api/` e `src/auth/` sabe de onde os dados vêm.
 
 ## Logo
 
-Salve a imagem da logo em **`assets/img/logo.png`**. Ela aparece nas telas de
-login e cadastro. Se o arquivo não existir, a interface cai automaticamente num
-lockup de texto (estrela + "STARSONIC SHOP"), então nada quebra.
+Coloque a logo em **`public/logo.png`** — aparece nas telas de login e cadastro.
 
-## Telas incluídas
-
-- **Login** e **Cadastro** (com social login Google/Apple)
-- **Minhas músicas** — biblioteca comprada, download
-- **Encomendas** — acompanhamento com timeline, player de prévia, aprovação e até 3 revisões
-- **Favoritos** — músicas e artistas salvos
-- **Meus dados** — perfil, segurança, notificações
-- **Nova encomenda** — música pronta, personalizada ou jingle
-- **Perfil do artista** — catálogo dinâmico (renderizado de `data.js`)
+> [!NOTE]
+> Se o arquivo não existir, a interface cai num lockup de texto (estrela +
+> "STARSONIC SHOP"). Nada quebra sem a logo.
 
 ## Stack
 
-HTML + [Tailwind CSS](https://tailwindcss.com) (via CDN) + JavaScript puro.
-Fonte [Inter](https://fonts.google.com/specimen/Inter). Sem dependências pra instalar.
+[React](https://react.dev) + [Vite](https://vitejs.dev) +
+[React Router](https://reactrouter.com) · [Tailwind CSS](https://tailwindcss.com)
+(via CDN) · tipografia [Inter](https://fonts.google.com/specimen/Inter).
