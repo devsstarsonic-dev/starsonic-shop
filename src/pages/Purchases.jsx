@@ -2,8 +2,8 @@ import { useMemo, useState } from 'react'
 import { useApi } from '../hooks/useApi.js'
 import { getPurchases } from '../api/index.js'
 
-const MusicNote = ({ size = 24 }) => (<svg width={size} height={size} viewBox="0 0 24 24" fill="#0a0a2e"><path d="M9 19V6l12-3v13" /></svg>)
-const PlayGlyph = () => (<svg width="20" height="20" viewBox="0 0 24 24" fill="#22d3ee"><path d="M8 5v14l11-7z" /></svg>)
+const MusicNote = ({ size = 24 }) => (<svg width={size} height={size} viewBox="0 0 24 24" fill="#0c0230"><path d="M9 19V6l12-3v13" /></svg>)
+const PlayGlyph = () => (<svg width="20" height="20" viewBox="0 0 24 24" fill="#00c5e4"><path d="M8 5v14l11-7z" /></svg>)
 const UserGlyph = () => (<svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><path d="M12 11c1.66 0 3-1.34 3-3s-1.34-3-3-3-3 1.34-3 3 1.34 3 3 3zm0 2c-2.67 0-8 1.34-8 4v2h16v-2c0-2.66-5.33-4-8-4z" /></svg>)
 const ClockGlyph = () => (<svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><circle cx="12" cy="12" r="9" /><path d="M12 7v5l3 2" /></svg>)
 const DownloadGlyph = () => (<svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5"><path d="M12 4v12m0 0l-4-4m4 4l4-4M4 20h16" /></svg>)
@@ -30,11 +30,11 @@ export default function Purchases() {
     <>
       <div id="libStats" className="grid grid-cols-3 gap-3 mb-5">
         <div className="lib-stat">
-          <div className="ic avatar-1"><svg width="16" height="16" viewBox="0 0 24 24" fill="#0a0a2e"><path d="M9 19V6l12-3v13" /><circle cx="6" cy="19" r="3" /><circle cx="18" cy="16" r="3" /></svg></div>
+          <div className="ic avatar-1"><svg width="16" height="16" viewBox="0 0 24 24" fill="#0c0230"><path d="M9 19V6l12-3v13" /><circle cx="6" cy="19" r="3" /><circle cx="18" cy="16" r="3" /></svg></div>
           <div><p className="text-white text-sm font-bold leading-tight">3 músicas</p><p className="text-slate-400 text-[11px]">na sua biblioteca</p></div>
         </div>
         <div className="lib-stat">
-          <div className="ic avatar-4"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#0a0a2e" strokeWidth="2.5"><path d="M12 4v12m0 0l-4-4m4 4l4-4M4 20h16" /></svg></div>
+          <div className="ic avatar-4"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#0c0230" strokeWidth="2.5"><path d="M12 4v12m0 0l-4-4m4 4l4-4M4 20h16" /></svg></div>
           <div><p className="text-white text-sm font-bold leading-tight">Downloads ilimitados</p><p className="text-slate-400 text-[11px]">baixe quantas vezes quiser</p></div>
         </div>
         <div className="lib-stat">

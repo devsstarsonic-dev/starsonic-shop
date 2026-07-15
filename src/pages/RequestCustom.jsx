@@ -66,7 +66,7 @@ export default function RequestCustom() {
 
         <div className="p-4 rounded-lg bg-cyan-500/5 border border-cyan-400/20 mb-6">
           <div className="flex items-start gap-3">
-            <span className="flex-shrink-0 mt-0.5" style={{ color: '#22d3ee' }}><Info size={18} /></span>
+            <span className="flex-shrink-0 mt-0.5" style={{ color: '#00c5e4' }}><Info size={18} /></span>
             <div>
               <p className="text-white text-xs font-semibold mb-1">Como funciona</p>
               <p className="text-slate-300 text-[11px] leading-relaxed">1) Artista aceita o pedido em até 24h · 2) Ele compõe e envia a versão pra você aprovar · 3) Você tem até <strong className="text-cyan-400">3 revisões grátis</strong> pra pedir ajustes · 4) Quando aprovar, o download final libera.</p>

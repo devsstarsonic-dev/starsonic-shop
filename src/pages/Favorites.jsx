@@ -24,7 +24,7 @@ export default function Favorites() {
           {(songs ?? []).map((s) => (
             <div key={s.id} className="music-card p-4">
               <div className="flex items-center gap-3">
-                <div className={`w-12 h-12 rounded-lg ${s.avatar} flex items-center justify-center flex-shrink-0`} style={{ color: '#0a0a2e' }}><Play size={18} /></div>
+                <div className={`w-12 h-12 rounded-lg ${s.avatar} flex items-center justify-center flex-shrink-0`} style={{ color: '#0c0230' }}><Play size={18} /></div>
                 <div className="flex-1 min-w-0">
                   <p className="text-white text-sm font-semibold truncate">{s.title}</p>
                   <p className="text-slate-400 text-xs cursor-pointer hover:text-cyan-400" onClick={() => navigate(`/artista/${s.slug}`)}>{s.artist} · {s.genre}</p>
@@ -46,7 +46,7 @@ export default function Favorites() {
                 </div>
                 <div className="flex items-center gap-1.5 justify-center mb-1">
                   <p className="text-white font-bold">{a.name}</p>
-                  {a.verified && <span style={{ color: '#22d3ee' }}><Star size={14} /></span>}
+                  {a.verified && <span style={{ color: '#00c5e4' }}><Star size={14} /></span>}
                 </div>
                 <p className="text-slate-400 text-xs mb-3">{a.genre} · {a.city}</p>
                 <div className="flex items-center gap-3 justify-center mb-4">
@@ -62,7 +62,7 @@ export default function Favorites() {
           </div>
 
           <div className="card p-6 border-dashed border-white/10 text-center mt-4">
-            <div className="w-12 h-12 rounded-2xl avatar-1 flex items-center justify-center mx-auto mb-3" style={{ color: '#0a0a2e' }}><Search size={20} /></div>
+            <div className="w-12 h-12 rounded-2xl avatar-1 flex items-center justify-center mx-auto mb-3" style={{ color: '#0c0230' }}><Search size={20} /></div>
             <p className="text-white font-semibold mb-1">Descobrir novos artistas</p>
             <p className="text-slate-400 text-xs mb-4">Explore centenas de compositores brasileiros na StarSonic Shop</p>
             <button className="btn-secondary px-5 py-2 rounded-lg text-xs">Explorar StarSonic</button>

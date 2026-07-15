@@ -20,7 +20,7 @@ export default function App() {
   const onAuth = pathname === '/' || pathname === '/signup'
   return (
     <>
-    <Backgrounds showViz={onAuth} />
+    <Backgrounds showViz={onAuth} showStars={onAuth} />
     <Routes>
       <Route path="/" element={<Login />} />
       <Route path="/signup" element={<Signup />} />

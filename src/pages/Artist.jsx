@@ -52,7 +52,7 @@ export default function Artist() {
   useEffect(() => {
     const el = liquidRef.current
     if (!el || !window.initLiquidEther) return
-    const ctl = window.initLiquidEther(el, { colors: ['#22d3ee', '#8b5cf6', '#ec4899'], resolution: 0.45, cursorSize: 90, mouseForce: 18, autoSpeed: 0.5, autoIntensity: 2.0 })
+    const ctl = window.initLiquidEther(el, { colors: ['#00c5e4', '#8b5cf6', '#16024f'], resolution: 0.45, cursorSize: 90, mouseForce: 18, autoSpeed: 0.5, autoIntensity: 2.0 })
     return () => { if (ctl && ctl.dispose) ctl.dispose() }
   }, [slug])
 
@@ -98,7 +98,7 @@ export default function Artist() {
             <h1 className="sp-name">{a.name}</h1>
             <div className="sp-accent" aria-hidden="true">
               <svg width="130" height="20" viewBox="0 0 130 20" fill="none" xmlns="http://www.w3.org/2000/svg">
-                <defs><linearGradient id="spgrad" x1="0" y1="0" x2="1" y2="0"><stop offset="0" stopColor="#22d3ee" /><stop offset=".5" stopColor="#8b5cf6" /><stop offset="1" stopColor="#ec4899" /></linearGradient></defs>
+                <defs><linearGradient id="spgrad" x1="0" y1="0" x2="1" y2="0"><stop offset="0" stopColor="#00c5e4" /><stop offset=".5" stopColor="#8b5cf6" /><stop offset="1" stopColor="#5b21b6" /></linearGradient></defs>
                 {HERO_ACCENT.map(([x, y, h], idx) => (<rect key={idx} x={x} y={y} width="4" height={h} rx="2" fill="url(#spgrad)" style={{ animationDelay: ACC_DELAYS[idx] }} />))}
               </svg>
             </div>
@@ -130,7 +130,7 @@ export default function Artist() {
 
       <div className="sp-body">
         <div className="sp-controls">
-          <button className="sp-play" title="Tocar prévia"><svg width="24" height="24" viewBox="0 0 24 24" fill="#04122b"><path d="M8 5v14l11-7z" /></svg></button>
+          <button className="sp-play" title="Tocar prévia"><svg width="24" height="24" viewBox="0 0 24 24" fill="#0c0230"><path d="M8 5v14l11-7z" /></svg></button>
           <button className={`sp-follow${following ? ' following' : ''}`} onClick={() => setFollowing(v => !v)}>
             <span className="follow-lbl">{following ? 'Seguindo' : 'Seguir'}</span>
           </button>
@@ -212,7 +212,7 @@ export default function Artist() {
             </div>
           ) : (
             <div>
-              <div className="buy-check"><svg width="34" height="34" viewBox="0 0 24 24" fill="none" stroke="#22d3ee" strokeWidth="2.6" strokeLinecap="round" strokeLinejoin="round"><path d="M20 6L9 17l-5-5" /></svg></div>
+              <div className="buy-check"><svg width="34" height="34" viewBox="0 0 24 24" fill="none" stroke="#00c5e4" strokeWidth="2.6" strokeLinecap="round" strokeLinejoin="round"><path d="M20 6L9 17l-5-5" /></svg></div>
               <h3 className="buy-title">Compra realizada!</h3>
               <p className="buy-success-text">Enviamos o link de download pro seu e-mail. Aproveite! 🎧</p>
               <button className="buy-cta" onClick={() => setBuy((b) => ({ ...b, open: false }))}>Concluir</button>

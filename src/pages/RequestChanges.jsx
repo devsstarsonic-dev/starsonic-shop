@@ -18,7 +18,7 @@ export default function RequestChanges() {
 
       <form className="card-highlight p-8" style={{ borderColor: 'rgba(245, 158, 11, 0.3)' }} onSubmit={enviar}>
         <div className="text-center mb-6">
-          <div className="w-14 h-14 rounded-2xl mx-auto mb-3 flex items-center justify-center avatar-6" style={{ color: '#0a0a2e' }}><Edit size={26} /></div>
+          <div className="w-14 h-14 rounded-2xl mx-auto mb-3 flex items-center justify-center avatar-6" style={{ color: '#0c0230' }}><Edit size={26} /></div>
           <h1 className="text-white text-2xl font-bold mb-2">Pedir alteração ao artista</h1>
           <p className="text-slate-400 text-sm">Descreva o que você quer que seja ajustado. Seja específico pra facilitar o trabalho do artista.</p>
         </div>

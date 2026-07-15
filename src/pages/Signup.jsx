@@ -29,7 +29,7 @@ export default function Signup() {
       <div className="min-h-screen flex items-center justify-center p-6">
         <div className="max-w-md w-full">
           <div className="text-center mb-5">
-            <img className="brand-logo mx-auto mb-2" style={{ height: 118 }} src={LOGO_SRC} alt="Starsonic Shop" />
+            <img className="brand-logo mx-auto mb-2" style={{ width: 380, maxWidth: '95%', height: 'auto' }} src={LOGO_SRC} alt="Starsonic Shop" />
             <span className="brand-tagline">Crie sua conta em 30 segundos</span>
           </div>
 
@@ -40,7 +40,7 @@ export default function Signup() {
             <div className="space-y-1.5 mb-4 p-3 rounded-lg bg-cyan-500/5 border border-cyan-400/20">
               {PERKS.map((p) => (
                 <div key={p} className="flex items-center gap-2 text-slate-300 text-xs">
-                  <span style={{ color: '#22d3ee' }}><Check size={14} strokeWidth={2.5} /></span>{p}
+                  <span style={{ color: '#00c5e4' }}><Check size={14} strokeWidth={2.5} /></span>{p}
                 </div>
               ))}
             </div>

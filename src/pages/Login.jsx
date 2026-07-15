@@ -26,8 +26,8 @@ export default function Login() {
           <div className="tilt-depth" aria-hidden="true"><span className="orb o1"></span><span className="orb o2"></span><span className="orb o3"></span></div>
 
           <div className="text-center mb-5 logo-3d">
-            <img className="brand-logo mx-auto mb-2" style={{ height: 118 }} src={LOGO_SRC} alt="Starsonic Shop" />
-            <span className="brand-tagline">Músicas de verdade, feitas por gente de verdade</span>
+            <img className="brand-logo mx-auto mb-2" style={{ width: 380, maxWidth: '95%', height: 'auto' }} src={LOGO_SRC} alt="Starsonic Shop" />
+            <span className="brand-tagline">Músicas que conectam e emocionam</span>
           </div>
 
           <div className="border-glow-card tilt-card" ref={cardRef} style={{ '--border-radius': '16px', '--cone-spread': 25, '--fill-opacity': 0.4 }}>

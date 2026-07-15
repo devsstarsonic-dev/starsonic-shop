@@ -2,10 +2,11 @@ import { useEffect, useRef } from 'react'
 
 // Fundo cosmico global: aurora (CSS) + waveform (login) + estrelas + vinheta.
 // Port fiel dos IIFEs canvas do HTML.
-export default function Backgrounds({ showViz }) {
+export default function Backgrounds({ showViz, showStars = true }) {
   const vizRef = useRef(null)
   const starRef = useRef(null)
   const vizApi = useRef(null)
+  const starApi = useRef(null)
 
   // ===== VISUALIZADOR DE MUSICA (waveform de barras espelhadas) =====
   useEffect(() => {
@@ -145,13 +146,23 @@ export default function Backgrounds({ showViz }) {
     function start() { cancelAnimationFrame(raf); last = performance.now(); raf = requestAnimationFrame(frame) }
     function stop() { cancelAnimationFrame(raf) }
     resize()
-    const onResize = () => { resize(); if (reduce) drawStars(false, 0) }
+    let on = false
+    function show() { if (on) return; on = true; c.style.display = ''; if (reduce) drawStars(false, 0); else start() }
+    function hide() { if (!on) return; on = false; stop(); c.style.display = 'none' }
+    starApi.current = { show, hide }
+    const onResize = () => { resize(); if (on && reduce) drawStars(false, 0) }
     window.addEventListener('resize', onResize, { passive: true })
     let onVis
-    if (reduce) { drawStars(false, 0) }
-    else { start(); onVis = () => { document.hidden ? stop() : start() }; document.addEventListener('visibilitychange', onVis) }
-    return () => { stop(); window.removeEventListener('resize', onResize); if (onVis) document.removeEventListener('visibilitychange', onVis) }
+    if (!reduce) { onVis = () => { if (!on) return; document.hidden ? stop() : start() }; document.addEventListener('visibilitychange', onVis) }
+    if (showStars) show(); else hide()
+    return () => { stop(); window.removeEventListener('resize', onResize); if (onVis) document.removeEventListener('visibilitychange', onVis); starApi.current = null }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [])
+
+  useEffect(() => {
+    if (!starApi.current) return
+    showStars ? starApi.current.show() : starApi.current.hide()
+  }, [showStars])
 
   return (
     <>

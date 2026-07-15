@@ -31,7 +31,7 @@ export default function Orders() {
 
         <div className="p-4 rounded-xl bg-black/40 border border-white/10 mb-4">
           <div className="flex items-center gap-4">
-            <div className="play-btn" role="button" aria-label="Reproduzir prévia" style={{ color: '#0a0a2e' }}><Play size={20} /></div>
+            <div className="play-btn" role="button" aria-label="Reproduzir prévia" style={{ color: '#0c0230' }}><Play size={20} /></div>
             <div className="flex-1 min-w-0">
               <p className="text-white text-sm font-semibold mb-2">Versão 1 · Prévia da música</p>
               <div className="progress-track mb-2"><div className="progress-fill" style={{ width: '32%' }}></div></div>
@@ -150,7 +150,7 @@ export default function Orders() {
 
       {/* Nova encomenda */}
       <div className="card p-6 border-dashed border-white/10 text-center">
-        <div className="w-12 h-12 rounded-2xl avatar-3 flex items-center justify-center mx-auto mb-3" style={{ color: '#0a0a2e' }}><Plus size={20} /></div>
+        <div className="w-12 h-12 rounded-2xl avatar-3 flex items-center justify-center mx-auto mb-3" style={{ color: '#0c0230' }}><Plus size={20} /></div>
         <p className="text-white font-semibold mb-1">Quer uma nova música?</p>
         <p className="text-slate-400 text-xs mb-4">Escolha entre jingle instrumental, música pronta ou personalizada</p>
         <button className="btn-primary px-5 py-2 rounded-lg text-xs" onClick={() => navigate('/encomendar')}>Começar encomenda</button>

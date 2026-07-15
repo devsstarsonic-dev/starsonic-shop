@@ -22,7 +22,7 @@ export default function ApproveSong() {
 
       <div className="card-highlight p-8">
         <div className="text-center mb-6">
-          <div className="w-16 h-16 rounded-full mx-auto mb-3 flex items-center justify-center" style={{ background: 'linear-gradient(135deg, #10b981, #22d3ee)', boxShadow: '0 0 40px rgba(16, 185, 129, 0.3)', color: '#0a0a2e' }}>
+          <div className="w-16 h-16 rounded-full mx-auto mb-3 flex items-center justify-center" style={{ background: 'linear-gradient(135deg, #10b981, #00c5e4)', boxShadow: '0 0 40px rgba(16, 185, 129, 0.3)', color: '#0c0230' }}>
             <Check size={30} strokeWidth={3} />
           </div>
           <h1 className="text-white text-2xl font-bold mb-2">Tem certeza que quer aprovar?</h1>
@@ -32,7 +32,7 @@ export default function ApproveSong() {
         <div className="p-4 rounded-xl bg-black/40 border border-white/10 mb-5">
           <p className="text-slate-400 text-[10px] uppercase font-bold mb-3">Versão que você está aprovando</p>
           <div className="flex items-center gap-4">
-            <div className="play-btn" role="button" aria-label="Reproduzir versão" style={{ color: '#0a0a2e' }}><Play size={20} /></div>
+            <div className="play-btn" role="button" aria-label="Reproduzir versão" style={{ color: '#0c0230' }}><Play size={20} /></div>
             <div className="flex-1 min-w-0">
               <p className="text-white text-sm font-semibold mb-1">Casamento Ana &amp; Pedro</p>
               <p className="text-slate-400 text-xs mb-2">por João Silva · versão 1</p>
