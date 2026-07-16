@@ -22,7 +22,7 @@ export default function Signup() {
   const { login } = useAuth()
   const [showPwd, setShowPwd] = useState(false)
 
-  const criar = async (e) => { e.preventDefault(); await login(); navigate('/app') }
+  const criar = async (e) => { e.preventDefault(); await login(); navigate('/inicio') }
 
   return (
     <div id="view-signup" className="view active">

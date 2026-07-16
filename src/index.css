@@ -9,6 +9,24 @@
   --brand-violet: #8b5cf6;    /* single on-brand accent violet — hue-matched to #16024f, used as cyan's gradient partner everywhere */
   --brand-violet-deep: #5b21b6; /* darker violet stop, for gradients needing 3 tones */
   --brand-cyan-tint: #3fdcf5; /* light cyan for icons/text on dark chips */
+
+  --elev-1: 0 8px 24px rgba(4,0,20,.28);
+  --elev-2: 0 14px 38px rgba(4,0,20,.42);
+  --elev-3: 0 20px 46px rgba(4,0,20,.55), 0 0 40px rgba(0,197,228,.14);
+  --glow-cyan: 0 8px 24px rgba(0,197,228,.35);
+
+  --r-sm: 10px; --r-md: 14px; --r-lg: 16px; --r-xl: 20px; --r-pill: 999px;
+
+  --dur-micro: 160ms;
+  --dur-ui: 240ms;
+  --dur-page: 320ms;
+  --ease-out: cubic-bezier(.22,1,.36,1);
+  --ease-in: cubic-bezier(.4,0,1,1);
+
+  --ok: #10b981; --ok-ink: #34d399;
+  --warn: #f59e0b; --warn-ink: #fbbf24;
+  --danger: #ef4444; --danger-ink: #f87171;
+  --hot: #f59e0b;
 }
 * { font-family: 'Inter', system-ui, sans-serif; }
 body { background: var(--brand-purple); color: #e2e8f0; min-height: 100vh; }
@@ -561,3 +579,95 @@ body { background: var(--brand-purple); color: #e2e8f0; min-height: 100vh; }
 @media (prefers-reduced-motion: reduce){ .buy-overlay,.buy-card{ animation:none } }
 .sp-toast { position: fixed; left: 50%; bottom: 26px; transform: translateX(-50%) translateY(12px); z-index: 60; background: rgba(20,18,50,.97); color: #e2e8f0; border: 1px solid rgba(34,211,238,.4); padding: 10px 18px; border-radius: 999px; font-size: 13px; font-weight: 600; box-shadow: 0 12px 34px rgba(0,0,0,.45); opacity: 0; pointer-events: none; transition: opacity .2s, transform .2s; }
 .sp-toast.show { opacity: 1; transform: translateX(-50%) translateY(0); }
+
+/* ============================================================
+   MARKETPLACE — TopNav, cards, filtros, player, toast, motion
+   ============================================================ */
+
+/* --- TopNav --- */
+.market-nav { position: sticky; top: 0; z-index: 50; background: rgba(12,2,48,.88); backdrop-filter: blur(20px); border-bottom: 1px solid rgba(255,255,255,.08); }
+.market-nav-inner { max-width: 1400px; margin: 0 auto; padding: 12px 24px; display: flex; align-items: center; gap: 20px; }
+.market-nav-link { padding: 8px 12px; color: #94a3b8; font-size: 13px; font-weight: 600; cursor: pointer; border-radius: var(--r-sm); transition: color var(--dur-micro) var(--ease-out), background var(--dur-micro) var(--ease-out); text-decoration: none; white-space: nowrap; }
+.market-nav-link:hover { color: #e2e8f0; background: rgba(255,255,255,.05); }
+.market-nav-link.active { color: var(--brand-cyan); background: rgba(0,197,228,.12); }
+.market-search { flex: 1; max-width: 460px; position: relative; }
+.market-search input { width: 100%; box-sizing: border-box; padding: 10px 14px 10px 38px; background: rgba(3,3,20,.5); border: 1px solid rgba(148,163,184,.15); border-radius: var(--r-pill); color: #fff; font-size: 13px; outline: none; transition: border-color var(--dur-micro), box-shadow var(--dur-micro); }
+.market-search input:focus { border-color: var(--brand-cyan); box-shadow: 0 0 0 3px rgba(0,197,228,.12); }
+.market-search svg { position: absolute; left: 13px; top: 50%; transform: translateY(-50%); color: #64748b; pointer-events: none; }
+.cart-btn { position: relative; }
+.cart-count { position: absolute; top: -6px; right: -6px; background: linear-gradient(135deg, var(--brand-violet), var(--brand-violet-deep)); color: #fff; font-size: 9px; font-weight: 900; border-radius: var(--r-pill); padding: 2px 6px; line-height: 1.3; min-width: 16px; text-align: center; }
+
+/* --- Cover art / cards --- */
+.mkt-cover { width: 100%; aspect-ratio: 1; border-radius: var(--r-md); overflow: hidden; position: relative; display: flex; align-items: center; justify-content: center; flex-shrink: 0; }
+.mkt-cover-overlay { position: absolute; inset: 0; background: linear-gradient(to top, rgba(4,0,20,.75), transparent 60%); opacity: 0; transition: opacity var(--dur-ui) var(--ease-out); display: flex; align-items: flex-end; justify-content: flex-end; padding: 10px; }
+.mkt-card:hover .mkt-cover-overlay { opacity: 1; }
+.mkt-play-btn { width: 40px; height: 40px; border-radius: 50%; background: linear-gradient(135deg, var(--brand-cyan), var(--brand-violet)); display: flex; align-items: center; justify-content: center; border: none; cursor: pointer; color: var(--brand-purple-deep); box-shadow: var(--glow-cyan); transition: transform var(--dur-micro) var(--ease-out); }
+.mkt-play-btn:hover { transform: scale(1.08); }
+.mkt-play-btn:active { transform: scale(.94); }
+.mkt-card { cursor: pointer; transition: transform var(--dur-ui) var(--ease-out); }
+.mkt-card:hover { transform: translateY(-4px); }
+.mkt-card:hover .mkt-title { color: var(--brand-cyan); }
+.mkt-title { color: #fff; font-size: 14px; font-weight: 700; transition: color var(--dur-micro); white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+
+/* --- Wave (equalizer decorativo) --- */
+.wave { display: flex; align-items: flex-end; gap: 2px; }
+.wave-bar { flex: 1; background: linear-gradient(180deg, var(--brand-cyan), var(--brand-violet)); border-radius: 2px; min-height: 4px; }
+.wave-bar-purple { background: linear-gradient(180deg, var(--brand-violet), var(--brand-violet-deep)); }
+@media (prefers-reduced-motion: reduce) { .wave-bar { animation: none !important; } }
+
+/* --- Badges de categoria/destaque (além dos badge-paid/pending/done já existentes) --- */
+.badge-cyan { background: rgba(0,197,228,.15); color: var(--brand-cyan-tint); border: 1px solid rgba(0,197,228,.3); padding: 3px 10px; border-radius: var(--r-pill); font-size: 11px; font-weight: 600; display: inline-flex; align-items: center; gap: 4px; }
+.badge-violet { background: rgba(139,92,246,.15); color: #c4b5fd; border: 1px solid rgba(139,92,246,.3); padding: 3px 10px; border-radius: var(--r-pill); font-size: 11px; font-weight: 600; }
+.badge-hot { background: rgba(245,158,11,.15); color: var(--warn-ink); border: 1px solid rgba(245,158,11,.3); padding: 3px 10px; border-radius: var(--r-pill); font-size: 11px; font-weight: 700; display: inline-flex; align-items: center; gap: 4px; }
+.badge-slate { background: rgba(148,163,184,.1); color: #94a3b8; border: 1px solid rgba(148,163,184,.2); padding: 3px 10px; border-radius: var(--r-pill); font-size: 11px; font-weight: 600; }
+
+/* --- Preço --- */
+.price-pill { font-variant-numeric: tabular-nums; color: var(--brand-cyan-tint); font-weight: 700; }
+
+/* --- Genre tile --- */
+.genre-tile { position: relative; overflow: hidden; border-radius: var(--r-lg); padding: 24px; min-height: 140px; cursor: pointer; border: none; transition: transform var(--dur-ui) var(--ease-out), box-shadow var(--dur-ui) var(--ease-out); }
+.genre-tile:hover { transform: translateY(-4px); box-shadow: var(--elev-2); }
+
+/* --- Filtros --- */
+.filter-chip { padding: 7px 14px; background: rgba(255,255,255,.05); border: 1px solid rgba(148,163,184,.16); border-radius: var(--r-pill); color: #cbd5e1; font-size: 12px; font-weight: 600; cursor: pointer; transition: all var(--dur-micro) var(--ease-out); display: inline-flex; align-items: center; gap: 6px; white-space: nowrap; }
+.filter-chip:hover { border-color: rgba(0,197,228,.35); }
+.filter-chip.active { background: linear-gradient(135deg, rgba(0,197,228,.2), rgba(139,92,246,.12)); border-color: rgba(0,197,228,.5); color: var(--brand-cyan-tint); }
+.filter-drawer-backdrop { position: fixed; inset: 0; background: rgba(4,0,20,.6); z-index: 70; opacity: 0; pointer-events: none; transition: opacity var(--dur-ui) var(--ease-out); }
+.filter-drawer-backdrop.open { opacity: 1; pointer-events: auto; }
+.filter-drawer { position: fixed; top: 0; left: 0; bottom: 0; width: min(320px, 88vw); background: var(--brand-purple-deep); z-index: 71; transform: translateX(-100%); transition: transform var(--dur-ui) var(--ease-out); overflow-y: auto; box-shadow: var(--elev-3); }
+.filter-drawer.open { transform: translateX(0); }
+
+/* --- Sticky player --- */
+.sticky-player { position: fixed; bottom: 20px; left: 20px; right: 20px; max-width: 640px; margin: 0 auto; background: rgba(12,2,48,.97); backdrop-filter: blur(20px); border: 1px solid rgba(139,92,246,.3); border-radius: var(--r-lg); padding: 10px 16px; z-index: 90; box-shadow: var(--elev-3); display: flex; align-items: center; gap: 14px; transform: translateY(140%); transition: transform var(--dur-ui) var(--ease-out); }
+.sticky-player.show { transform: translateY(0); }
+@media (prefers-reduced-motion: reduce) { .sticky-player { transition: none; } }
+
+/* --- Toast (marketplace) --- */
+.mkt-toast-wrap { position: fixed; top: 88px; right: 20px; z-index: 200; display: flex; flex-direction: column; gap: 10px; max-width: 340px; }
+.mkt-toast { background: var(--surface-2); border: 1px solid rgba(0,197,228,.35); border-radius: var(--r-md); padding: 14px 16px; box-shadow: var(--elev-3); backdrop-filter: blur(10px); animation: toastIn var(--dur-ui) var(--ease-out); }
+@keyframes toastIn { from { opacity: 0; transform: translateX(60px); } to { opacity: 1; transform: translateX(0); } }
+@media (prefers-reduced-motion: reduce) { .mkt-toast { animation: none; } }
+
+/* --- Transições de página / stagger --- */
+.page-enter { animation: pageIn var(--dur-page) var(--ease-out); }
+@keyframes pageIn { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
+@media (prefers-reduced-motion: reduce) { .page-enter { animation: none; } }
+.stagger-item { animation: pageIn var(--dur-ui) var(--ease-out) backwards; }
+@media (prefers-reduced-motion: reduce) { .stagger-item { animation: none; } }
+
+/* --- Sidebar de filtros (desktop) --- */
+.filters-panel { position: sticky; top: 88px; }
+.filters-panel label { display: flex; align-items: center; gap: 8px; cursor: pointer; }
+
+.content-wrap { padding: 28px 24px 140px; max-width: 1400px; margin: 0 auto; }
+@media (max-width: 640px) { .content-wrap { padding: 20px 16px 140px; } }
+
+@media (max-width: 900px) {
+  .market-nav-link:not(.always-visible) { display: none; }
+  .market-search { max-width: none; }
+}
+@media (max-width: 480px) {
+  .market-nav-inner { padding: 10px 14px; gap: 10px; }
+  .cart-btn, .dropdown > button { padding: 8px !important; }
+  .sticky-player { left: 10px; right: 10px; bottom: 12px; padding: 8px 12px; gap: 10px; }
+}

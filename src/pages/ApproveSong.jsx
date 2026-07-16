@@ -13,12 +13,12 @@ export default function ApproveSong() {
 
   const aprovar = () => {
     alert('Música aprovada! Download liberado.')
-    navigate('/app/musicas')
+    navigate('/biblioteca')
   }
 
   return (
     <div className="max-w-3xl mx-auto px-6 pt-8 pb-16">
-      <button className="text-slate-400 text-xs mb-6 hover:text-cyan-400" onClick={() => navigate('/app/encomendas')}>← Voltar pra minhas encomendas</button>
+      <button className="text-slate-400 text-xs mb-6 hover:text-cyan-400" onClick={() => navigate('/encomendas')}>← Voltar pra minhas encomendas</button>
 
       <div className="card-highlight p-8">
         <div className="text-center mb-6">
@@ -55,7 +55,7 @@ export default function ApproveSong() {
         </div>
 
         <div className="grid grid-cols-1 md:grid-cols-2 gap-2">
-          <button className="btn-secondary py-3 rounded-lg text-sm" onClick={() => navigate('/app/encomendas')}>Voltar</button>
+          <button className="btn-secondary py-3 rounded-lg text-sm" onClick={() => navigate('/encomendas')}>Voltar</button>
           <button className="btn-primary py-3 rounded-lg text-sm flex items-center justify-center gap-2" onClick={aprovar}>
             <Check size={16} strokeWidth={2.5} /> Aprovar e liberar download
           </button>

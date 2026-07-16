@@ -17,7 +17,7 @@ export default function Login() {
   const sceneRef = useRef(null), tiltRef = useRef(null), cardRef = useRef(null)
   useLoginFx({ sceneRef, tiltRef, cardRef })
 
-  const entrar = async (e) => { e.preventDefault(); await login(); navigate('/app') }
+  const entrar = async (e) => { e.preventDefault(); await login(); navigate('/inicio') }
 
   return (
     <div id="view-login" className="view active">

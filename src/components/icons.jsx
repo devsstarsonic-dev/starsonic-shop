@@ -25,6 +25,14 @@ export const Info = (p) => <S {...p}><circle cx="12" cy="12" r="10" /><path d="M
 export const Share = (p) => <S {...p}><path d="M8.684 13.342C8.886 12.938 9 12.482 9 12c0-.482-.114-.938-.316-1.342m0 2.684a3 3 0 110-2.684m0 2.684l6.632 3.316m-6.632-6l6.632-3.316m0 0a3 3 0 105.367-2.684 3 3 0 00-5.367 2.684z" /></S>
 export const Upload = (p) => <S {...p}><path d="M7 16a4 4 0 01-.88-7.9 5 5 0 019.9-1 5.5 5.5 0 015.7 6.8 5 5 0 01-1.7 3.1M12 12v9m0-9l-3 3m3-3l3 3" /></S>
 export const Mic = (p) => <S {...p}><path d="M15 17h5l-1.4-1.4A2 2 0 0118 14v-3a6 6 0 00-4-5.6V5a2 2 0 10-4 0v.4C7.7 6.2 6 8.4 6 11v3.2c0 .5-.2 1-.6 1.4L4 17h5" /></S>
+export const Cart = (p) => <S {...p}><circle cx="9" cy="21" r="1" /><circle cx="20" cy="21" r="1" /><path d="M1 1h4l2.68 13.39a2 2 0 002 1.61h9.72a2 2 0 002-1.61L23 6H6" /></S>
+export const ChevronLeft = (p) => <S {...p}><path d="M15 18l-6-6 6-6" /></S>
+export const ChevronRight = (p) => <S {...p}><path d="M9 18l6-6-6-6" /></S>
+export const Filter = (p) => <S {...p}><path d="M22 3H2l8 9.46V19l4 2v-8.54L22 3z" /></S>
+export const X = (p) => <S {...p}><path d="M18 6L6 18M6 6l12 12" /></S>
+export const Minus = (p) => <S {...p}><path d="M5 12h14" /></S>
+export const TrendUp = (p) => <S {...p}><path d="M23 6l-9.5 9.5-5-5L1 18" /><path d="M17 6h6v6" /></S>
+export const Sliders = (p) => <S {...p}><path d="M4 21v-7M4 10V3M12 21v-9M12 8V3M20 21v-5M20 12V3" /><path d="M1 14h6M9 8h6M17 16h6" /></S>
 
 export const Google = ({ size = 14 }) => (
   <svg width={size} height={size} viewBox="0 0 24 24">

@@ -1,8 +1,10 @@
 import { useEffect, useMemo, useRef, useState } from 'react'
-import { useNavigate, useParams, Navigate } from 'react-router-dom'
+import { useNavigate, useParams, Navigate, Link } from 'react-router-dom'
 import { useApi } from '../hooks/useApi.js'
-import { getArtist } from '../api/index.js'
+import { getArtist, getComposer } from '../api/index.js'
+import { useCart } from '../cart/CartContext.jsx'
 import { songCover, artistHero, fmtNum } from '../lib/artistArt.js'
+import { priceToCents } from '../data/mock.js'
 
 const HERO_ACCENT = [[2, 7], [10, 5, 11], [18, 3, 15], [26, 6, 9], [34, 2, 17], [42, 4, 13], [50, 1, 19], [58, 5, 11], [66, 3, 15], [74, 6, 9], [82, 4, 13], [90, 2, 17], [98, 5, 11], [106, 7, 7], [114, 4, 13], [122, 6, 9]]
 const ACC_DELAYS = ['0.0s', '-0.08s', '-0.16s', '-0.24s', '-0.32s', '-0.4s', '-0.48s', '-0.56s', '-0.64s', '-0.72s', '-0.8s', '-0.88s', '-0.96s', '-1.04s', '-1.12s', '-1.2s']
@@ -39,6 +41,8 @@ export default function Artist() {
   const { slug } = useParams()
   const navigate = useNavigate()
   const { data: a, loading } = useApi(() => getArtist(slug), [slug])
+  const { data: composer } = useApi(() => a ? getComposer(a.composerSlug) : Promise.resolve(null), [a?.composerSlug])
+  const { add } = useCart()
   const [following, setFollowing] = useState(false)
   const [q, setQ] = useState('')
   const [cat, setCat] = useState('all')
@@ -72,7 +76,7 @@ export default function Artist() {
   }, [a, q, cat])
 
   if (loading) return null
-  if (!a) return <Navigate to="/app/favoritos" replace />
+  if (!a) return <Navigate to="/favoritos" replace />
 
   const showToast = (msg) => { setToast(msg); clearTimeout(toastTimer.current); toastTimer.current = setTimeout(() => setToast(''), 1700) }
   const copyHandle = () => {
@@ -89,7 +93,7 @@ export default function Artist() {
         <div className="sp-hero-bg" dangerouslySetInnerHTML={{ __html: artistHero(a) }} />
         <div className="sp-hero-liquid" aria-hidden="true" ref={liquidRef} style={{ position: 'absolute' }} />
         <div className="sp-hero-shade"></div>
-        <button className="sp-back" onClick={() => navigate('/app/favoritos')}>
+        <button className="sp-back" onClick={() => navigate('/favoritos')}>
           <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.4"><path d="M19 12H5m7 7l-7-7 7-7" /></svg>
           Voltar
         </button>
@@ -189,6 +193,21 @@ export default function Artist() {
             </div>
           </div>
         </div>
+
+        {composer && (
+          <div className="sp-section">
+            <h2 className="sp-section-title">Criado por</h2>
+            <Link to={`/compositor/${composer.slug}`} className="card p-4 flex items-center gap-3 hover:opacity-90 transition" style={{ maxWidth: 420 }}>
+              <div className={`w-12 h-12 rounded-2xl flex items-center justify-center flex-shrink-0 ${composer.avatar}`}>
+                <span className="text-white font-black text-sm">{composer.initials}</span>
+              </div>
+              <div className="flex-1">
+                <p className="text-white font-bold text-sm">{composer.name}</p>
+                <p className="text-slate-500 text-xs">{composer.location} · Ver perfil do compositor</p>
+              </div>
+            </Link>
+          </div>
+        )}
       </div>
 
       <div className={`buy-modal${buy.open ? ' open' : ''}`} aria-hidden={!buy.open}>
@@ -206,7 +225,10 @@ export default function Artist() {
                 <li><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.6" strokeLinecap="round" strokeLinejoin="round"><path d="M20 6L9 17l-5-5" /></svg> Download na hora após o pagamento</li>
                 <li><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.6" strokeLinecap="round" strokeLinejoin="round"><path d="M20 6L9 17l-5-5" /></svg> Licença para uso pessoal</li>
               </ul>
-              <button className="buy-cta" onClick={() => setBuy((b) => ({ ...b, success: true }))}>Comprar</button>
+              <button className="buy-cta" onClick={() => {
+                add({ cartId: `${slug}-${buy.i}`, title: song.title, artist: a.name, gradient: a.hero ? `linear-gradient(135deg, ${a.hero[1]}, ${a.hero[2]})` : undefined, licenseLabel: 'Uso pessoal', priceCents: priceToCents(song.price) })
+                setBuy((b) => ({ ...b, success: true }))
+              }}>Comprar</button>
               <div className="buy-priceline"><span className="buy-price">{song.price}</span> <span className="buy-price-note">· pagamento único, à vista</span></div>
               <div className="buy-secure"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><rect x="4" y="11" width="16" height="10" rx="2" /><path d="M8 11V7a4 4 0 018 0v4" /></svg> Pagamento 100% seguro</div>
             </div>

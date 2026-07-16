@@ -11,7 +11,7 @@ export default function NewOrder() {
   const navigate = useNavigate()
   return (
     <div className="max-w-5xl mx-auto px-6 pt-8 pb-16">
-      <button className="text-slate-400 text-xs mb-6 hover:text-cyan-400" onClick={() => navigate('/app/encomendas')}>← Voltar pra minhas encomendas</button>
+      <button className="text-slate-400 text-xs mb-6 hover:text-cyan-400" onClick={() => navigate('/encomendas')}>← Voltar pra minhas encomendas</button>
 
       <div className="text-center mb-8">
         <div className="w-14 h-14 rounded-2xl avatar-1 flex items-center justify-center mx-auto mb-3" style={{ color: '#0c0230' }}><MusicNote size={26} /></div>

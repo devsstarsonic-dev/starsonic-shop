@@ -9,7 +9,7 @@ export default function RequestCustom() {
   const enviar = (e) => {
     e.preventDefault()
     alert('Solicitação enviada pro Demétrio! Você recebe uma resposta em até 24h.')
-    navigate('/app/encomendas')
+    navigate('/encomendas')
   }
 
   return (

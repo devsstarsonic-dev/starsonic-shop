@@ -9,12 +9,12 @@ export default function RequestChanges() {
   const enviar = (e) => {
     e.preventDefault()
     alert('Alteração enviada ao João Silva! Você usou 1 de 3 revisões.')
-    navigate('/app/encomendas')
+    navigate('/encomendas')
   }
 
   return (
     <div className="max-w-3xl mx-auto px-6 pt-8 pb-16">
-      <button className="text-slate-400 text-xs mb-6 hover:text-cyan-400" onClick={() => navigate('/app/encomendas')}>← Voltar pra minhas encomendas</button>
+      <button className="text-slate-400 text-xs mb-6 hover:text-cyan-400" onClick={() => navigate('/encomendas')}>← Voltar pra minhas encomendas</button>
 
       <form className="card-highlight p-8" style={{ borderColor: 'rgba(245, 158, 11, 0.3)' }} onSubmit={enviar}>
         <div className="text-center mb-6">
@@ -60,7 +60,7 @@ export default function RequestChanges() {
         </div>
 
         <div className="grid grid-cols-1 md:grid-cols-2 gap-2">
-          <button type="button" className="btn-secondary py-3 rounded-lg text-sm" onClick={() => navigate('/app/encomendas')}>Cancelar</button>
+          <button type="button" className="btn-secondary py-3 rounded-lg text-sm" onClick={() => navigate('/encomendas')}>Cancelar</button>
           <button type="submit" className="btn-primary py-3 rounded-lg text-sm">Enviar pedido de alteração</button>
         </div>
 
